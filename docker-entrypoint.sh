@@ -13,7 +13,7 @@ echo "Copy nginx/conf.d"
 cp -r /nginx/conf.d /etc/nginx
 
 # Get certs
-certbot certonly -n -d $domain,www.$domain \
+certbot certonly -n -d $domain \
   --standalone --preferred-challenges http --email $email --agree-tos --expand
 
 # Kick off cron
