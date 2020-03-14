@@ -1,4 +1,4 @@
-registry=registry.gitlab.com/sevheng/xplore-nginx
+registry=registry.gitlab.com/rovool/core/ws
 tag=latest
 
 if [ "$1" != '' ]; 
