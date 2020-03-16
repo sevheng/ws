@@ -6,8 +6,10 @@ then
     tag=$1
 fi
 
-echo "Docker building image"
-docker build -t $registry:$tag .
-echo "Docker pushing image"
+color_white='\e[0m'
+color_green='\e[32m'
+
+echo "\n${color_green}Building...${color_white}\n"
+docker build -q -t $registry:$tag .
+echo "\n${color_green}Pushing to registry...${color_white}\n"
 docker push $registry:$tag
-echo "Docker finish"
