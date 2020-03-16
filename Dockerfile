@@ -10,6 +10,7 @@ RUN chmod +x /etc/periodic/daily/renew
 RUN mkdir /var/lib/certbot
 
 COPY ./docker-entrypoint.sh .
+COPY ./error_page.conf /etc/nginx/error_page.conf
 
 RUN chmod +x ./docker-entrypoint.sh
 
