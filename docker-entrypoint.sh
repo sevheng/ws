@@ -15,12 +15,15 @@ cp -r /nginx/conf.d /etc/nginx
 echo "Copy html"
 cp -r /nginx/html /etc/nginx/html # default
 
-# Get certs
-certbot certonly -n $domain \
-  --standalone --preferred-challenges http --email $email --agree-tos --expand
+if [ "$USE_SSL" == "true" ]
+then
+  # Get certs
+  certbot certonly -n $domain \
+    --standalone --preferred-challenges http --email $email --agree-tos --expand
 
-# Kick off cron
-/usr/sbin/crond -f -d 8 &
+  # Kick off cron
+  /usr/sbin/crond -f -d 8 &
+fi
 
 echo "Start nginx"
 nginx -g "daemon off;"
