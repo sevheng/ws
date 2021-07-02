@@ -8,15 +8,15 @@ services:
       dockerfile: Dockerfile
     volumes:
       # - ./:/nginx
-      # - ws_letsencrypt:/etc/letsencrypt
+      - ws_letsencrypt:/etc/letsencrypt
     environment:
       - EMAIL=sevheng.luy@techostartup.center
-      - DOMAINS=startupcambodia.com beta.startupcambodia.com backoffice.example.com
+      - DOMAINS=example.com beta.example.com
       - USE_SSL=true
       - SSL_STAGING=1
     ports:
       - 80:80
       - 443:443
 
-# volumes:
-#     ws_letsencrypt:
+volumes:
+    ws_letsencrypt:

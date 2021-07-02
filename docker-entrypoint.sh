@@ -7,6 +7,8 @@ echo "Check nginx.conf"
 cp -r ./nginx/nginx.conf /etc/nginx/nginx.conf # default
 echo "Check conf"
 cp -r ./nginx/conf/* /etc/nginx/conf.d # default
+echo "Check header"
+cp -r ./nginx/header/* /etc/nginx/conf.d # default
 echo "Check util"
 cp -r ./nginx/util /etc/nginx/util # default
 echo "Check security"
