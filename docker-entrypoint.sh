@@ -28,7 +28,7 @@ if [ "$USE_SSL" == "true" ]
 then
 
   # Enable staging mode if needed
-  if [ $SSL_STAGING != "1" ]; then staging_arg="--staging"; fi
+  if [ $SSL_STAGING != "0" ]; then staging_arg="--staging"; fi
 
   # Get certs
   certbot certonly \
