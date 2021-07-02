@@ -4,10 +4,8 @@
 version: "3"
 
 services:
-  ws_app:
+  ws:
     image: registry.gitlab.com/rovool/core/ws:latest
-    container_name: ws
-    restart: always
     volumes:
       - ./nginx:/nginx
       - ws_letsencrypt:/etc/letsencrypt

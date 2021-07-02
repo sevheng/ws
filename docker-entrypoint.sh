@@ -1,25 +1,41 @@
 #!/bin/sh
 
-email=$EMAIL
-domain=$DOMAIN
+echo "Email : ${EMAIL}"
+echo "Domains : ${DOMAINS}"
 
-echo "email : ${email}"
-echo "doamin : ${domain}"
+echo "Check nginx.conf"
+cp -r ./nginx/nginx.conf /etc/nginx/nginx.conf # default
+echo "Check conf"
+cp -r ./nginx/conf/* /etc/nginx/conf.d # default
+echo "Check util"
+cp -r ./nginx/util /etc/nginx/util # default
+echo "Check security"
+cp -r ./nginx/security /etc/nginx/security # default
+echo "Check upstream"
+cp -r ./nginx/upstream /etc/nginx/upstream # default
+echo "Check html"
+cp -r ./nginx/html /etc/nginx/html # default
 
-echo "Copy nginx.conf"
-cp /nginx/nginx.conf /etc/nginx/nginx.conf
+#Join $domains to -d args
+domain_args=""
+for domain in $DOMAINS; do
+  domain_args="$domain_args -d $domain"
+done
 
-echo "Copy nginx/conf.d"
-cp -r /nginx/conf.d /etc/nginx
-
-echo "Copy html"
-cp -r /nginx/html /etc/nginx/html # default
+echo "map domain${domain_args}"
 
 if [ "$USE_SSL" == "true" ]
 then
+
+  # Enable staging mode if needed
+  if [ $SSL_STAGING != "0" ]; then staging_arg="--staging"; fi
+
   # Get certs
-  certbot certonly -n $domain \
-    --standalone --preferred-challenges http --email $email --agree-tos --expand
+  certbot certonly \
+    -n $domain_args \
+    --email $EMAIL \
+    $staging_arg \
+    --standalone --preferred-challenges http --agree-tos --expand
 
   # Kick off cron
   /usr/sbin/crond -f -d 8 &

@@ -9,12 +9,12 @@ RUN chmod +x /etc/periodic/daily/renew
 
 RUN mkdir /var/lib/certbot
 
-COPY ./docker-entrypoint.sh .
-COPY ./error_page.conf /etc/nginx/error_page.conf
+ADD . ./nginx
+# COPY ./docker-entrypoint.sh .
 
-RUN chmod +x ./docker-entrypoint.sh
+RUN chmod +x ./nginx/docker-entrypoint.sh
 
 # Remove nginx default config
 RUN rm /etc/nginx/conf.d/default.conf
 
-ENTRYPOINT './docker-entrypoint.sh'
+ENTRYPOINT './nginx/docker-entrypoint.sh'

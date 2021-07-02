@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  ws_app:
+    # image: docker.pkg.github.com/sevheng/ws/nginx:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # - ./:/nginx
+      - ws_letsencrypt:/etc/letsencrypt
+    environment:
+      - EMAIL=sevheng.luy@techostartup.center
+      - DOMAINS=startupcambodia.com beta.startupcambodia.com backoffice.example.com
+      - USE_SSL=true
+      - SSL_STAGING=0
+    ports:
+      - 80:80
+      - 443:443
+volumes:
+    ws_letsencrypt:
