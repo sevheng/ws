@@ -5,7 +5,7 @@ version: "3"
 
 services:
   ws:
-    image: registry.gitlab.com/rovool/core/ws:latest
+    image: ghcr.io/sevheng/ws/nginx:latest
     volumes:
       - ./nginx:/nginx
       - ws_letsencrypt:/etc/letsencrypt
