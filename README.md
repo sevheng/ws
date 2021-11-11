@@ -12,6 +12,7 @@ services:
       - ./nginx/conf:/nginx/conf
       - ws_letsencrypt:/etc/letsencrypt
     environment:
+      - USE_SSL=false # set true if want https
       - EMAIL=example@example.com
       - DOMAIN=-d example.com
     ports:
