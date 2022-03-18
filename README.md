@@ -13,8 +13,8 @@ services:
       - ws_letsencrypt:/etc/letsencrypt
     environment:
       - USE_SSL=false # set true if want https
-      - EMAIL=example.com beta.example.com
-      - DOMAIN=-d example.com
+      - EMAIL=example@example.com
+      - DOMAIN=example.com beta.example.com
       - SSL_STAGING=1
     ports:
       - 80:80
